@@ -20,20 +20,44 @@ namespace aula.lista
     {
 
         public void MenuBasic() {
+            ListaLigada gerenciarVagoes = new ListaLigada();
+            main(gerenciarVagoes);
             Console.WriteLine("Presione enter para continuar");
             Console.ReadLine();
             
             Console.WriteLine("Escolha uma das opções...");
-            Console.WriteLine("1. Sou cliente");
-            Console.WriteLine("2. Caixa");
+            Console.WriteLine("4. Buscar por id");
+            Console.WriteLine("5. Buscar por carga");
+            Console.WriteLine("6. Buscar por peso");
             Console.WriteLine("0. Sair");
             Console.Write("Opção: ");
 
             switch (Console.Read())
             {
-                case '1':
+                case '4':
+                    Console.WriteLine("Insira o id");
+                    var id = int.Parse(Console.ReadLine());
+                    Console.WriteLine(gerenciarVagoes.BuscarPorId(id));
                     break;
-                case '2':
+                case '5':
+                    Console.WriteLine("Insira a carga");
+                    var carga = Console.ReadLine();
+                    foreach(Vagao item in gerenciarVagoes.BuscarPorCarga(carga))
+                    {
+                     Console.WriteLine("ID {0}", item.Id);
+                     Console.WriteLine("Carga {0}", item.Carga);
+                     Console.WriteLine("Peso {0}", item.Peso);
+                    }
+                    break;
+                case '6':
+                    Console.WriteLine("Insira o peso");
+                    var peso = int.Parse(Console.ReadLine());
+                    foreach(Vagao item in gerenciarVagoes.BuscarPorPeso(peso))
+                    {
+                     Console.WriteLine("ID {0}", item.Id);
+                     Console.WriteLine("Carga {0}", item.Carga);
+                     Console.WriteLine("Peso {0}", item.Peso);
+                    }
                     break;
                 case '0':
                     Environment.Exit(0);
@@ -45,8 +69,7 @@ namespace aula.lista
             MenuBasic();
         }
 
-        public static void main() {
-            ListaLigada gerenciarVagoes = new ListaLigada();
+        public static void main(ListaLigada gerenciarVagoes) {
             Vagao vagao1 = new Vagao() { Id = 1, Carga = "Arroz", Peso = 10 };
             Vagao vagao2 = new Vagao() { Id = 2, Carga = "Feijão", Peso = 15 };
             Vagao vagao3 = new Vagao() { Id = 3, Carga = "Farinha", Peso = 20 };
@@ -58,13 +81,6 @@ namespace aula.lista
             gerenciarVagoes.InserirVagao(vagao4);
             gerenciarVagoes.InserirVagao(vagao5);
             foreach(Vagao item in gerenciarVagoes.getVagoes()) {
-                Console.WriteLine("ID {0}", item.Id);
-                Console.WriteLine("Carga {0}", item.Carga);
-                Console.WriteLine("Peso {0}", item.Peso);
-            }
-
-            var vaga = gerenciarVagoes.BuscarPorCarga("Soja");
-            foreach(Vagao item in vaga) {
                 Console.WriteLine("ID {0}", item.Id);
                 Console.WriteLine("Carga {0}", item.Carga);
                 Console.WriteLine("Peso {0}", item.Peso);

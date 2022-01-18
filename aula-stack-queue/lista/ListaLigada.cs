@@ -42,16 +42,16 @@ namespace aula.lista
             return listVagao;
         }
 
-        // public Vagao BuscarPorPeso(int peso) {
-        //     var tempVagao = Trem;
-        //     List<Vagao> listVagao = new List<Vagao>();
-        //     while(tempVagao.VagaoAnterior != null) {
-        //         if(tempVagao.Carga == carga)
-        //             listVagao.Add(tempVagao);
-        //         tempVagao = tempVagao.VagaoAnterior;
-        //     }
-        //     return listVagao;
-        // }
+        public List<Vagao> BuscarPorPeso(int peso) {
+            var tempVagao = Trem;
+            List<Vagao> listVagao = new List<Vagao>();
+            do{
+                if(tempVagao.Peso == peso)
+                    listVagao.Add(tempVagao);
+                tempVagao = tempVagao.VagaoAnterior;
+            } while(tempVagao != null);
+            return listVagao;
+        }
 
         public List<Vagao> getVagoes() {
             var _trem = new List<Vagao>();
